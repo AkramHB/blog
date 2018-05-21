@@ -17,4 +17,14 @@
             <button type="submit" class="btn btn-danger">Submit</button>
     </form>
 
+    @if(count($errors))
+      <div class="mt-5 alert alert-danger">
+        <ul>
+          @foreach ($errors->all() as $error)
+            <li>{{$error}}</li>
+          @endforeach
+        </ul>
+      </div>
+    @endif
+
 @endsection

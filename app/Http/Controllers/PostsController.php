@@ -8,11 +8,12 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index() {
-        return view('posts.index');
+        $posts = Post::latest()->get();
+        return view('posts.index')->with('posts', $posts);
     }
 
-    public function show() {
-        return view('posts.show');
+    public function show(Post $post) {
+        return view('posts.show')->with('post', $post);
     }
 
     public function create() {
@@ -21,6 +22,12 @@ class PostsController extends Controller
 
     public function store() {
 
+        // Form Validation
+
+        $this->validate(request(), [
+            'title' => 'required | min : 3',
+            'body' => 'required',
+        ]);
 
         // create a new post using the request data
 

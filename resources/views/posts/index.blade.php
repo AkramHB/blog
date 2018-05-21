@@ -1,5 +1,7 @@
 @extends('layouts.master')
 
-@section('content')
-    <h1>Hello, World</h1>
+@section('content') 
+    @foreach($posts as $post)
+        @include('posts.post')
+    @endforeach
 @endsection
